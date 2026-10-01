@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { signup, login } from '../lib/auth.js'
 
-// Gate in front of the guardian dashboard (CLAUDE.md's Authentication
+// Gate in front of the guardian dashboard (DEVELOPMENT.md's Authentication
 // section) — a family member needs the household's pairing code (shown once
 // on the mirror at first launch, see mirror/src/components/PairingScreen.jsx)
 // plus their own name + password.

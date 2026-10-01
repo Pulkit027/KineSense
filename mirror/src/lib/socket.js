@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'
 
-// Contract (see CLAUDE.md / TEAM_GUIDE.md): { sign, timestamp, confidence }
+// Contract (see DEVELOPMENT.md / CONTRIBUTING.md): { sign, timestamp, confidence }
 // over the 'alert' event. Don't change this shape without telling the team —
 // dashboard/ and server/ both depend on it.
 // This app also listens for { text, timestamp, from } over 'checkin' — the

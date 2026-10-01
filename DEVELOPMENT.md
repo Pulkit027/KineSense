@@ -1,6 +1,6 @@
-# CLAUDE.md — Ghar-Sanket (घर-संकेत)
+# Development Guide — KineSense
 
-This file gives Claude Code full context for this project. Read this before making architectural decisions or generating code.
+This file gives Claude Code (and any contributor) full context for this project. Read this before making architectural decisions or generating code.
 
 ---
 
@@ -8,9 +8,7 @@ This file gives Claude Code full context for this project. Read this before maki
 
 An ambient, camera-based sign-language communication system for elderly deaf individuals living alone. A grandparent signs Indian Sign Language (ISL) at a laptop/mirror interface; the system recognizes the sign(s), and an alert appears on a family member's dashboard.
 
-**We are building Phase 1 right now.** Phase 2 (passive wellness/gait monitoring) is documented below for architectural awareness only — do not build it yet. Do not add scope from Phase 2 unless explicitly asked.
-
-**Hackathon tracks:** Track 02 (AI for Accessibility) primary, Track 03 (Telehealth & Remote Care) secondary via Phase 2.
+**Phase 1 (sign communication) is complete and is the current build scope.** Phase 2 (passive wellness/gait monitoring) is documented below for architectural awareness only — do not build further on it unless explicitly asked. Do not add scope from Phase 2 without being asked.
 
 ---
 
@@ -78,7 +76,7 @@ Node server (socket.io/ws) relays event
 Dashboard app subscribes to alert channel → renders pop-up notification
 ```
 
-### Dataset & model type change (2026-09-16)
+### Dataset & model type change
 
 The original plan (video clips from AI4Bharat INCLUDE/CISLR → LSTM/1D-CNN sequence
 classifier) has been replaced. Actual data on hand: a **Mendeley dataset of static
@@ -113,13 +111,13 @@ Consequences:
 **The model we DO train is a separate, second, much smaller model** — a sign classifier. Sequence:
 
 1. Take ISL dataset photos (Mendeley dataset, static images, scoped to our 19 signs — see "Dataset & model type change" above).
-2. Run each photo through MediaPipe's hand landmarker **once, offline, before/during the hackathon** — this converts photos into labeled landmark coordinate vectors (one vector per image, no temporal sequence). This step is a data-prep/conversion step, not model training. (Offline extraction uses the standalone `HandLandmarker`, not `HolisticLandmarker` — Holistic gates hand detection on finding a full body pose first, which silently failed on this dataset's close-up hand photos. The live mirror app below still uses Holistic since it also wants pose data for Phase 2; that's an independent choice from the offline extraction step.)
+2. Run each photo through MediaPipe's hand landmarker **once, offline, ahead of time** — this converts photos into labeled landmark coordinate vectors (one vector per image, no temporal sequence). This step is a data-prep/conversion step, not model training. (Offline extraction uses the standalone `HandLandmarker`, not `HolisticLandmarker` — Holistic gates hand detection on finding a full body pose first, which silently failed on this dataset's close-up hand photos. The live mirror app below still uses Holistic since it also wants pose data for Phase 2; that's an independent choice from the offline extraction step.)
 3. Train a small per-frame classifier (MLP/dense NN, or a classical model like SVM/random forest) on those labeled landmark vectors. Input: a single frame's landmark coordinates. Output: sign label. This is the actual ML training, and it's cheap — numeric arrays, not images, trains in minutes on CPU.
 4. At runtime, live camera frames go through the same MediaPipe conversion (step 2's process, live, one frame at a time) and feed into this trained classifier every frame; hold-to-confirm (majority vote over recent frames) provides temporal stability since the model itself has no memory.
 
 **Do not attempt to train or fine-tune MediaPipe itself.**
 
-Note the original plan called for video-based sequence training and explicitly ruled out static-photo recognition, since most ISL signs are defined by trajectory over time and a single frame normally can't distinguish them. That guidance still holds as the *ideal* — but the team is working from a static-photo dataset (Mendeley) as of 2026-09-16, so this project deliberately accepts the static-handshape approach and its accuracy tradeoff on motion-dependent signs (see above) rather than blocking on video data that isn't available. If video data becomes available later, prefer switching back to the sequence-model approach.
+Note the original plan called for video-based sequence training and explicitly ruled out static-photo recognition, since most ISL signs are defined by trajectory over time and a single frame normally can't distinguish them. That guidance still holds as the *ideal* — but this project works from a static-photo dataset (Mendeley), so it deliberately accepts the static-handshape approach and its accuracy tradeoff on motion-dependent signs (see above) rather than blocking on video data that isn't available. If video data becomes available later, prefer switching back to the sequence-model approach.
 
 ---
 
@@ -186,9 +184,7 @@ engine, not something this auth pass fixes.
 
 ---
 
-## Team / component ownership (for context, not for Claude Code to manage)
-
-Phase 1 active builders: **Neerav** and **Shelly**. Kaavya and Pulkit are on frontend for now.
+## Component ownership (for context, not for Claude Code to manage)
 
 | Owner | Component | Folder |
 |---|---|---|

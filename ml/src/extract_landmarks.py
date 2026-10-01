@@ -1,7 +1,7 @@
 """Offline pass: data/<word>/*.{jpg,jpeg,png} -> labeled landmark vectors.
 
 Runs MediaPipe Holistic once per photo (MediaPipe is pretrained, never fine-tuned —
-see root CLAUDE.md). Writes features.npy (N, 126) and labels.npy (N,) to ml/features/.
+see root DEVELOPMENT.md). Writes features.npy (N, 126) and labels.npy (N,) to ml/features/.
 
 Usage:
     python src/extract_landmarks.py

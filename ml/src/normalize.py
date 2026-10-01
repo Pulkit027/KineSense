@@ -1,6 +1,6 @@
 """Landmark normalization shared by extraction (offline) and live inference (mirror app
 port of this logic). Re-centers on the wrist and scales by hand span so recognition is
-invariant to distance/position from the camera — see root CLAUDE.md, this step is not
+invariant to distance/position from the camera — see root DEVELOPMENT.md, this step is not
 optional.
 """
 
@@ -32,7 +32,7 @@ def normalize_hand(landmarks_xyz):
 def landmarks_to_vector(left_hand_xyz, right_hand_xyz):
     """Fixed-shape (126,) vector: 63 for left hand + 63 for right hand, in that
     order. This is the contract's "fixed-shape landmark array" — don't change the
-    shape or ordering without updating mirror/ and CLAUDE.md."""
+    shape or ordering without updating mirror/ and DEVELOPMENT.md."""
     left = normalize_hand(left_hand_xyz)
     right = normalize_hand(right_hand_xyz)
     return np.concatenate([left, right])

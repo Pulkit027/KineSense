@@ -1,8 +1,8 @@
-// Family member signup/login (CLAUDE.md's Authentication section). The
+// Family member signup/login (DEVELOPMENT.md's Authentication section). The
 // server issues a JWT on success; App.jsx stores it and uses it to
 // authenticate the socket connection (`socket.auth = { token }`).
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:4000'
-const TOKEN_KEY = 'ghar-sanket:family-token'
+const TOKEN_KEY = 'kinesense:family-token'
 
 export function getStoredToken() {
   return localStorage.getItem(TOKEN_KEY)

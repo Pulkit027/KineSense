@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'
 
-// Contract (see CLAUDE.md / TEAM_GUIDE.md): { sign, timestamp, confidence }
+// Contract (see DEVELOPMENT.md / CONTRIBUTING.md): { sign, timestamp, confidence }
 // over the 'alert' event, coming from mirror/ via the server relay.
 // This app also emits { text, timestamp } over 'checkin' — the reverse
 // direction, family to mirror — see App.jsx's handleSendCheckin. Incoming

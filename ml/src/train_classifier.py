@@ -1,5 +1,5 @@
 """Train the per-frame sign classifier on landmark vectors produced by
-extract_landmarks.py. No sequence model — see root CLAUDE.md's "Dataset & model
+extract_landmarks.py. No sequence model — see root DEVELOPMENT.md's "Dataset & model
 type change" note for why (static-photo data has no trajectory to learn from).
 
 Usage:

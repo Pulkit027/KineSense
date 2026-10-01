@@ -1,23 +1,21 @@
-# Kine-Sense
+# KineSense
 
 Ambient ISL sign-communication system for elderly individuals living alone.
-See `CLAUDE.md` for full build context and `Ghar-Sanket-PRD.md` for the product spec.
+See [`DEVELOPMENT.md`](DEVELOPMENT.md) for full build context and
+[`PRD.md`](PRD.md) for the product spec.
 
 Phase 1 is fully wired end to end: a real webcam feeds MediaPipe Holistic →
 a trained classifier → sign chaining into a sentence → an alert relayed to
 the family dashboard, plus check-ins flowing back the other way.
 
-## Team & credits
-
-Built at a hackathon by a team of four, and it won. Original team repo:
-[shellyagarwal2176/buildonomics_gochujang](https://github.com/shellyagarwal2176/buildonomics_gochujang).
+## Contributors
 
 - Shelly Agarwal
 - Neerav Jain
 - Pulkit Maheshwari
 - Kaavya
 
-This copy is a snapshot of the final code without the team's commit history.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for module ownership and workflow conventions.
 
 ## Structure
 
@@ -45,7 +43,7 @@ hand up to the camera for ~1.2s) opens the mirror at `:5173`.
 1. **Dataset**: a Mendeley dataset of static photos, one or a few per word,
    for the 19-word vocabulary below. (The original plan was ISL video clips
    + a sequence model; this pivoted to photos when video data wasn't
-   available — see `CLAUDE.md`'s "Dataset & model type change" note.)
+   available — see `DEVELOPMENT.md`'s "Dataset & model type change" note.)
 2. **Landmark extraction** (`ml/src/extract_landmarks.py`): every photo runs
    once through MediaPipe's **HandLandmarker** (Tasks Vision API — not
    Holistic, whose hand detection is gated on finding a body pose first,

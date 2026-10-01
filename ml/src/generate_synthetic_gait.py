@@ -1,8 +1,8 @@
 """Generate a synthetic 60-day daily_metrics series with an injected decline,
 for testing/demoing detect_drift.py. No real longitudinal elderly-gait dataset
-exists (see root CLAUDE.md's Phase 2 "Synthetic data note") — this is what
+exists (see root DEVELOPMENT.md's Phase 2 "Synthetic data note") — this is what
 changepoint detection is actually validated and demoed against, since
-live-collected data can never span 60 days in a hackathon.
+live-collected data can't realistically span 60 days during development.
 
 Writes straight into the same SQLite file the live app uses
 (server/wellness.db), so detect_drift.py needs no separate test path.

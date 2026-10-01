@@ -33,7 +33,7 @@ function App() {
   const [pairingCodeError, setPairingCodeError] = useState('')
   const [pairingRegenerated, setPairingRegenerated] = useState(false)
 
-  // Silent device pairing/auth (CLAUDE.md's Authentication section) — runs
+  // Silent device pairing/auth (DEVELOPMENT.md's Authentication section) — runs
   // once per device, ever. The socket only connects once this resolves.
   useEffect(() => {
     ensurePaired()

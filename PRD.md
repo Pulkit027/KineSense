@@ -1,8 +1,6 @@
-# Ghar-Sanket — Product Requirements Document
+# KineSense — Product Requirements Document
 
-**घर-संकेत** — an ambient sign-language and wellness portal for elderly deaf individuals aging at home.
-
-**Tracks:** 02 (AI for Accessibility, primary) · 03 (Telehealth & Remote Care, secondary)
+An ambient sign-language and wellness portal for elderly deaf individuals aging at home.
 
 ---
 
@@ -144,7 +142,7 @@ Mirror app (grandparent's screen)          Dashboard app (family's screen)
 |---|---|
 | Frontend | React + Vite + Tailwind |
 | Vision/tracking | MediaPipe Holistic (WASM), client-side |
-| Sign recognition | Small per-frame classifier (MLP/dense NN or classical ML), trained offline on landmark vectors extracted from static photos (Mendeley dataset, 19-word vocabulary). Updated 2026-09-16 — original plan was a video-sequence LSTM/1D-CNN on AI4Bharat INCLUDE + CISLR; see CLAUDE.md for the tradeoff this implies on motion-dependent signs. |
+| Sign recognition | Small per-frame classifier (MLP/dense NN or classical ML), trained offline on landmark vectors extracted from static photos (Mendeley dataset, 19-word vocabulary). Original plan was a video-sequence LSTM/1D-CNN on AI4Bharat INCLUDE + CISLR; see DEVELOPMENT.md for the tradeoff this implies on motion-dependent signs. |
 | Wellness metrics | Geometry/arithmetic on pose landmarks — no model |
 | Trend detection | `ruptures` (changepoint detection) |
 | Backend | Minimal Node.js server (Express or bare `http`) running `socket.io`/`ws` — relays alert events only, no persistence, no video |
@@ -156,12 +154,12 @@ Mirror app (grandparent's screen)          Dashboard app (family's screen)
 
 ## 10. Data
 
-- **ISL training data:** Mendeley dataset, static photos (one or a few stills per word) covering the 19-word vocabulary, converted to landmark vectors offline before/during the build. (Original plan was AI4Bharat INCLUDE + CISLR video clips; switched 2026-09-16 based on data actually available — see CLAUDE.md for the resulting model-type change and accuracy tradeoff.)
+- **ISL training data:** Mendeley dataset, static photos (one or a few stills per word) covering the 19-word vocabulary, converted to landmark vectors offline ahead of time. (Original plan was AI4Bharat INCLUDE + CISLR video clips; switched based on data actually available — see DEVELOPMENT.md for the resulting model-type change and accuracy tradeoff.)
 - **Wellness validation data:** No training data needed (geometry-only). A synthetic longitudinal generator is used solely to measure detection latency against known ground truth, since no public dataset contains a single person's decline over months.
 
 ---
 
-## 11. Success Criteria (Demo)
+## 11. Success Criteria
 
 1. A person signs a 2-sign chain (e.g. `HEAD` + `PAIN`) and a pop-up alert appears on the dashboard within 3 seconds.
 2. A person walks across the room and live gait metrics visibly populate.
@@ -176,14 +174,14 @@ Mirror app (grandparent's screen)          Dashboard app (family's screen)
 | Risk | Mitigation |
 |---|---|
 | Sign recognition accuracy degrades with real users vs. dataset | Test against live team members early (by hour 6–7), not just held-out dataset splits |
-| Vocabulary creep delays the ISL model | Freeze at 19 signs before the build starts; no additions mid-build |
-| Judges question the synthetic wellness data | State proactively: real data trained/validated the recognition layer; synthetic data is used only for the multi-month time axis, which no dataset anywhere contains |
+| Vocabulary creep delays the ISL model | Freeze at 19 signs; no additions without a deliberate decision |
+| Reviewers question the synthetic wellness data | State proactively: real data trained/validated the recognition layer; synthetic data is used only for the multi-month time axis, which no dataset anywhere contains |
 | Voice agent/signal eats time better spent elsewhere | Explicitly optional and cut-first; do not start until core scope is demo-ready |
 | Lighting/camera angle affects tracking at demo time | Test at actual demo distance and lighting in the final rehearsal block |
 
 ---
 
-## 13. Out of Scope (This Build)
+## 13. Out of Scope
 
 - Multi-resident support (distinguishing between two people in frame)
 - Two-way communication (family replying via a signing avatar)

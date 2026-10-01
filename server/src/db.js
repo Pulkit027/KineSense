@@ -2,12 +2,12 @@ const { DatabaseSync } = require('node:sqlite')
 const path = require('path')
 
 // Phase 2 persistence. Phase 1's server was intentionally stateless ("no DB,
-// no persistence" in CLAUDE.md) — that line was protecting against storing
+// no persistence" in DEVELOPMENT.md) — that line was protecting against storing
 // video/PII, not ruling out a rolling metric buffer, which Phase 2's 60-day
 // trend engine cannot work without. Single-file SQLite, reused (not a second
 // DB file) for the auth tables below — households/family_members/
 // mirror_devices, added for per-household auth (see server/src/auth.js and
-// CLAUDE.md's Authentication section). daily_metrics/drift_cards still key
+// DEVELOPMENT.md's Authentication section). daily_metrics/drift_cards still key
 // off a single hardcoded residentId, not householdId — that's an existing
 // limitation of the Phase 2 trend engine, not something this auth work fixes.
 //

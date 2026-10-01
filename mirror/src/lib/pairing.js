@@ -1,12 +1,12 @@
 import { socket } from './socket.js'
 
-// Silent, one-time device pairing (CLAUDE.md's Authentication section) — she
+// Silent, one-time device pairing (DEVELOPMENT.md's Authentication section) — she
 // never sees a login screen. On first launch this asks the server to create
 // a household and pair this device, then persists the device token so this
 // never runs again. The pairing code is handed back to App.jsx to display
 // once, for whoever is setting up family accounts on the dashboard.
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:4000'
-const DEVICE_TOKEN_KEY = 'ghar-sanket:mirror-device-token'
+const DEVICE_TOKEN_KEY = 'kinesense:mirror-device-token'
 
 async function postJson(path, body) {
   const res = await fetch(`${SERVER_URL}${path}`, {

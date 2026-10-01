@@ -1,5 +1,5 @@
 // Phase 2 wellness-monitoring consent. Stored client-side only (localStorage)
-// since nothing here is video/PII either way — matches CLAUDE.md's existing
+// since nothing here is video/PII either way — matches DEVELOPMENT.md's existing
 // privacy stance. null = never asked, true/false = explicit answer.
 const KEY = 'kinesense.wellnessConsent'
 

@@ -1,4 +1,4 @@
-"""Frozen 19-sign vocabulary — see root CLAUDE.md. Do not add signs here without
+"""Frozen 19-sign vocabulary — see root DEVELOPMENT.md. Do not add signs here without
 confirming with the team; this list is the single source of truth other ml/ scripts
 import from.
 """

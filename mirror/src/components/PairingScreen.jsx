@@ -1,7 +1,7 @@
 // Shown right after this mirror silently pairs itself on first launch (see
 // lib/pairing.js) — not a login screen for her, just the code whoever is
 // setting up the household needs to hand to family members so they can sign
-// up on the dashboard (CLAUDE.md's Authentication section). Reused for
+// up on the dashboard (DEVELOPMENT.md's Authentication section). Reused for
 // ChainNote's "Get a new code for family" link (lib/pairing.js's
 // regenerateCode) — same screen, `regenerated` just swaps the copy since a
 // rotated code invalidates the old one instead of being the household's

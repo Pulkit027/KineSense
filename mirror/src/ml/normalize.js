@@ -1,7 +1,7 @@
 // Port of ml/src/normalize.py — must stay numerically identical to it, since
 // the classifier was trained on vectors produced by that script. Re-centers on
 // the wrist and scales by hand span so recognition is invariant to distance/
-// position from the camera (see root CLAUDE.md — not optional polish).
+// position from the camera (see root DEVELOPMENT.md — not optional polish).
 
 const WRIST_IDX = 0;
 const MIDDLE_MCP_IDX = 9;
@@ -32,7 +32,7 @@ export function normalizeHand(landmarks) {
 }
 
 // Fixed-shape (126,) vector: 63 for left hand + 63 for right hand, in that
-// order. Don't change the shape or ordering without updating ml/ and CLAUDE.md.
+// order. Don't change the shape or ordering without updating ml/ and DEVELOPMENT.md.
 export function landmarksToVector(leftHandLandmarks, rightHandLandmarks) {
   const left = normalizeHand(leftHandLandmarks);
   const right = normalizeHand(rightHandLandmarks);

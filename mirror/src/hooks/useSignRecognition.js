@@ -8,7 +8,7 @@ import { dispatchFall } from '../wellness/dispatchFall.js'
 import { dispatchMetric } from '../wellness/dispatchMetric.js'
 import { socket } from '../lib/socket.js'
 
-// Real recognition loop: webcam -> Holistic (live, per CLAUDE.md an independent
+// Real recognition loop: webcam -> Holistic (live, per DEVELOPMENT.md an independent
 // choice from the offline HandLandmarker extraction — same 21-point hand
 // landmark schema either way, so normalize.js/signClassifier.js are unchanged)
 // -> per-frame classification -> majority-vote hold-to-confirm -> sign chaining

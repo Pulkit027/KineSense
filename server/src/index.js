@@ -12,11 +12,11 @@ const {
 } = require('./auth')
 
 // Relays alert and check-in events between mirror and dashboard. No video
-// ever stored — that's what CLAUDE.md's "no persistence" line protects.
+// ever stored — that's what DEVELOPMENT.md's "no persistence" line protects.
 // Phase 2 adds a small SQLite store (see db.js) for the wellness trend
 // engine's rolling metric buffer; it holds numeric gait/posture summaries
 // only, never video/PII, so it's a deliberate addition, not a reversal.
-// Alert contract: { sign, timestamp, confidence } — see CLAUDE.md/TEAM_GUIDE.md.
+// Alert contract: { sign, timestamp, confidence } — see DEVELOPMENT.md/CONTRIBUTING.md.
 // Sign chaining happens upstream in mirror/ (see PRD architecture diagram: ISL
 // model -> sign chaining -> alert) — by the time an event reaches here it's
 // already a single finished alert, not raw per-sign events to buffer.
@@ -26,7 +26,7 @@ const {
 // — see the socket.io auth middleware below; never trust a client-supplied
 // name for attribution.
 //
-// Every socket must authenticate (see CLAUDE.md's Authentication section) as
+// Every socket must authenticate (see DEVELOPMENT.md's Authentication section) as
 // either a paired mirror device or a logged-in family member, and every
 // live event (alert/checkin/fall/fallResolved) is scoped to that socket's
 // household room — a household never sees another household's events.
@@ -163,7 +163,7 @@ const httpServer = createServer(async (req, res) => {
 
   // Historical daily_metrics for the dashboard's Health Graph/Predictions —
   // unauthenticated to match /drift-cards above, a known pre-existing gap
-  // (see CLAUDE.md's Authentication section), not introduced or fixed here.
+  // (see DEVELOPMENT.md's Authentication section), not introduced or fixed here.
   if (req.method === 'GET' && url.pathname === '/metrics') {
     const residentId = url.searchParams.get('residentId')
     if (!residentId) {
@@ -269,7 +269,7 @@ const io = new Server(httpServer, {
 // Every socket authenticates as either a paired mirror device
 // ({ deviceToken } in handshake.auth) or a logged-in family member
 // ({ token }). Neither resolves -> reject the connection outright, per
-// CLAUDE.md's Authentication section — no anonymous sockets.
+// DEVELOPMENT.md's Authentication section — no anonymous sockets.
 io.use((socket, next) => {
   const auth = socket.handshake.auth || {}
 

@@ -1,8 +1,8 @@
 """Changepoint detection over the wellness trend engine's rolling metric
 buffer — the one piece of Phase 2 that has to stay in Python, since `ruptures`
-has no JS equivalent (see root CLAUDE.md's Phase 2 spec). One-shot CLI, not a
+has no JS equivalent (see root DEVELOPMENT.md's Phase 2 spec). One-shot CLI, not a
 daemon: run it on demand (button or manual call) rather than building a
-scheduler, which is more ops infrastructure than a hackathon needs.
+scheduler, which is more ops infrastructure than this project needs.
 
 Reads/writes server/wellness.db directly (Python stdlib sqlite3, no new
 dependency) — same file the Node relay server's db.js manages.

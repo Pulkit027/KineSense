@@ -1,6 +1,6 @@
 // Internal alert dispatch to the relay server — no external SMS/WhatsApp/
-// Twilio, per CLAUDE.md's hard requirement. This is the mirror side of the
-// `alert` socket event contract documented in TEAM_GUIDE.md:
+// Twilio, per DEVELOPMENT.md's hard requirement. This is the mirror side of the
+// `alert` socket event contract documented in CONTRIBUTING.md:
 // `{ sign, timestamp, confidence }`. Don't change this shape without updating
 // server/ and dashboard/ too.
 

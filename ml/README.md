@@ -45,7 +45,7 @@ that word reliably — the model will effectively have memorized them, not learn
 sign. This needs more source photos for `HUNGRY` (and ideally `STOP`, `HOME`, `I NEED
 HELP`) to fix; it isn't a pipeline bug.
 
-MediaPipe itself is never trained — see root CLAUDE.md for the full pipeline contract
+MediaPipe itself is never trained — see root DEVELOPMENT.md for the full pipeline contract
 and the "Dataset & model type change" note (this deviates from the original
 video-sequence plan because the available data is static photos, not clips).
 

@@ -12,7 +12,7 @@ const {
   getFamilyMember,
 } = require('./db')
 
-// Two-tier auth (see CLAUDE.md's Authentication section):
+// Two-tier auth (see DEVELOPMENT.md's Authentication section):
 //   1. Household pairing code — the mirror silently pairs once at first
 //      launch (see mirror/src/lib/pairing.js) using a device token, no login
 //      screen for her.
@@ -20,8 +20,8 @@ const {
 //      per household member on the dashboard.
 // JWT_SECRET falls back to a dev value so `npm run dev` works out of the box
 // without extra setup — set a real JWT_SECRET env var for anything beyond
-// local hackathon dev.
-const JWT_SECRET = process.env.JWT_SECRET || 'ghar-sanket-dev-secret-do-not-use-in-prod'
+// local dev.
+const JWT_SECRET = process.env.JWT_SECRET || 'kinesense-dev-secret-do-not-use-in-prod'
 const JWT_EXPIRY = '30d'
 const BCRYPT_ROUNDS = 10
 
@@ -67,7 +67,7 @@ function createHousehold() {
 // already-issued family JWTs: a device token proves a mirror already paired,
 // and a JWT proves someone already logged in, neither of which depends on
 // still knowing the pairing code. Only a *new* mirror pairing or family
-// signup/login needs the new code — see CLAUDE.md's Authentication section.
+// signup/login needs the new code — see DEVELOPMENT.md's Authentication section.
 function regenerateHouseholdCode(householdId) {
   if (!getHouseholdById(householdId)) throw new Error('Unknown household')
   return withUniquePairingCode((code) => updateHouseholdPairingCode(householdId, code))

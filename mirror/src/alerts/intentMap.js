@@ -1,5 +1,5 @@
 // Maps a chain of confirmed signs to a single family-facing intent phrase, per
-// CLAUDE.md/PRD's "System chains 2-3 sequential signs into a single intent
+// DEVELOPMENT.md/PRD's "System chains 2-3 sequential signs into a single intent
 // (e.g. HEAD + PAIN -> 'headache')" requirement.
 //
 // FLAG: that HEAD + PAIN example uses "HEAD", which isn't in the frozen
